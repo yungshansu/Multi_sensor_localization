@@ -65,17 +65,22 @@ target_link_libraries(apriltag_detector_nodelet
 )
 
 add_executable(apriltag_detector_node src/apriltag_detector_node.cpp)
+add_executable(apriltag_localization src/apriltag_localization.cpp)
+
 target_link_libraries(apriltag_detector_node
   ${catkin_LIBRARIES}
   apriltag_detector
 )
 
+target_link_libraries(apriltag_localization
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS apriltag_detector apriltag_detector_nodelet apriltag_detector_node
+install(TARGETS apriltag_detector apriltag_detector_nodelet apriltag_detector_node apriltag_localization
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
