@@ -21,7 +21,23 @@
       {id: 2, size: 0.163513, frame_id: tag_2},
       {id: 3, size: 0.061},
       {id: 4, size: 0.163513}, -->
-      {id: 471, size: 0.163513}]
+      {id: 100, size: 0.111, frame_id: tag_1},
+      {id: 101, size: 0.111, frame_id: tag_2},
+      {id: 103, size: 0.111, frame_id: tag_3},
+      {id: 104, size: 0.111, frame_id: tag_4},
+      {id: 111, size: 0.111, frame_id: tag_5},
+      {id: 112, size: 0.111, frame_id: tag_6},
+      {id: 113, size: 0.111, frame_id: tag_7},
+      {id: 114, size: 0.111, frame_id: tag_8},
+      {id: 115, size: 0.111, frame_id: tag_9},
+      {id: 124, size: 0.111, frame_id: tag_10},
+      {id: 116, size: 0.111, frame_id: tag_11},
+      {id: 117, size: 0.111, frame_id: tag_12},
+      {id: 119, size: 0.111, frame_id: tag_13},
+      {id: 120, size: 0.111, frame_id: tag_14},
+      {id: 121, size: 0.111, frame_id: tag_15},
+      {id: 122, size: 0.111, frame_id: tag_16},
+      {id: 123, size: 0.111, frame_id: tag_17},]
     </rosparam>
   </node>
 </launch>
