@@ -66,6 +66,7 @@ target_link_libraries(apriltag_detector_nodelet
 
 add_executable(apriltag_detector_node src/apriltag_detector_node.cpp)
 add_executable(apriltag_localization src/apriltag_localization.cpp)
+add_executable(tango_position_vis src/tango_position_vis.cpp)
 
 target_link_libraries(apriltag_detector_node
   ${catkin_LIBRARIES}
@@ -73,6 +74,9 @@ target_link_libraries(apriltag_detector_node
 )
 
 target_link_libraries(apriltag_localization
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(tango_position_vis
   ${catkin_LIBRARIES}
 )
 #############
