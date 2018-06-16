@@ -5,6 +5,7 @@
 #include <geometry_msgs/PointStamped.h>
 #include <geometry_msgs/PoseArray.h>
 #include <tf2_msgs/TFMessage.h>
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
 
 using namespace std;
 
@@ -17,8 +18,10 @@ private:
     ros::Subscriber tag_sub;
     ros::Publisher vis_pub;
     ros::Publisher marker_pub;
+    ros::Publisher apriltag_pose_pub;
     visualization_msgs::Marker marker;
     visualization_msgs::Marker map;
+    geometry_msgs::PoseWithCovarianceStamped apriltag_pose;
     void LocalCallback(const tf2_msgs::TFMessage& tags);
     void draw_the_map();
     geometry_msgs::Point tag_1, tag_2, tag_3, tag_4, tag_5, tag_6, tag_7, tag_8, tag_9, tag_10, tag_11, tag_12, tag_13, tag_14, tag_15, tag_16, tag_17;
@@ -27,6 +30,7 @@ private:
 AprilTagLocalization::AprilTagLocalization()
 {
     marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker", 0);
+    apriltag_pose_pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("apriltag_pose", 0);
     vis_pub = nh.advertise<visualization_msgs::Marker>("visualization_map", 1);
     tag_sub = nh.subscribe("tf", 1, &AprilTagLocalization::LocalCallback, this);
     //draw_the_map();
@@ -97,7 +101,7 @@ void AprilTagLocalization::LocalCallback(const tf2_msgs::TFMessage& tags)
     //AprilTagDetection tag_detection
     //visualization_msgs::Marker marker;
     marker.header.frame_id = "/map";
-    marker.header.stamp = ros::Time();
+    marker.header.stamp = ros::Time::now();
     marker.type = visualization_msgs::Marker::POINTS;
     marker.action = visualization_msgs::Marker::ADD;
     marker.id = 1;
@@ -109,12 +113,17 @@ void AprilTagLocalization::LocalCallback(const tf2_msgs::TFMessage& tags)
     marker.color.g = 1.0;
     marker.color.b = 0.0;
 
+
+    apriltag_pose.header.frame_id = "map";
+    apriltag_pose.header.stamp = marker.header.stamp;
+    
+
     int r = 0;    
     float tx = 1, ty = 1;  
     //std::vector<geometry_msgs::Point> my_points;
 
     for(int i=0; i<tags.transforms.size(); i++){
-	geometry_msgs::Point p;
+	    geometry_msgs::Point p;
         
 
         if(tags.transforms[i].child_frame_id == "tag_1") {
@@ -168,8 +177,10 @@ void AprilTagLocalization::LocalCallback(const tf2_msgs::TFMessage& tags)
             p.z = tags.transforms[i].transform.translation.y + 1.5;}
 	
         marker.points.push_back(p);
+        apriltag_pose.pose.pose.position = p;
     }
     marker_pub.publish(marker);
+    apriltag_pose_pub.publish(apriltag_pose);
 }
 
 

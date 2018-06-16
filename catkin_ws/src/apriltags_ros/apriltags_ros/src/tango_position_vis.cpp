@@ -38,7 +38,7 @@ void TangoVisualization::marker_setup(){
     path_list.type = visualization_msgs::Marker::LINE_LIST;    
     path_list.scale.x = 0.06; 
     path_list.scale.y = 0.06;
-    path_list.color.r=1.0;
+    path_list.color.g=1.0;
     path_list.color.a=1.0;
     last_pose.pose.position.x =0;
     last_pose.pose.position.y =0;
