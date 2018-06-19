@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(apriltags_ros)
 
+##set (CMAKE_CXX_STANDARD 11)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -67,6 +69,7 @@ target_link_libraries(apriltag_detector_nodelet
 add_executable(apriltag_detector_node src/apriltag_detector_node.cpp)
 add_executable(apriltag_localization src/apriltag_localization.cpp)
 add_executable(tango_position_vis src/tango_position_vis.cpp)
+add_executable(tango_create_map src/tango_create_map.cpp)
 
 target_link_libraries(apriltag_detector_node
   ${catkin_LIBRARIES}
@@ -79,12 +82,15 @@ target_link_libraries(apriltag_localization
 target_link_libraries(tango_position_vis
   ${catkin_LIBRARIES}
 )
+target_link_libraries(tango_create_map
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS apriltag_detector apriltag_detector_nodelet apriltag_detector_node apriltag_localization
+install(TARGETS apriltag_detector apriltag_detector_nodelet apriltag_detector_node apriltag_localization tango_create_map
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

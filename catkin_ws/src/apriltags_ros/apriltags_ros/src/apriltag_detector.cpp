@@ -96,10 +96,10 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg, const sens
   } else {
     // use camera intrinsic focal length and principal point
     // for backwards compatability
-    fx = cam_info->K[0];
-    fy = cam_info->K[4];
-    px = cam_info->K[2];
-    py = cam_info->K[5];
+    fx = cam_info->K[0]/4;
+    fy = cam_info->K[4]/3;
+    px = cam_info->K[2]/4;
+    py = cam_info->K[5]/3;
   }
 
   if(!sensor_frame_id_.empty())
