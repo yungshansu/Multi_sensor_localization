@@ -89,17 +89,17 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg, const sens
   if (projected_optics_) {
     // use projected focal length and principal point
     // these are the correct values
-    fx = cam_info->P[0];
-    fy = cam_info->P[5];
-    px = cam_info->P[2];
-    py = cam_info->P[6];
+    fx = cam_info->P[0]/4;
+    fy = cam_info->P[5]/3;
+    px = cam_info->P[2]/4;
+    py = cam_info->P[6]/3;
   } else {
     // use camera intrinsic focal length and principal point
     // for backwards compatability
-    fx = cam_info->K[0];
-    fy = cam_info->K[4];
-    px = cam_info->K[2];
-    py = cam_info->K[5];
+    fx = cam_info->K[0]/4;
+    fy = cam_info->K[4]/3;
+    px = cam_info->K[2]/4;
+    py = cam_info->K[5]/3;
   }
 
   if(!sensor_frame_id_.empty())
